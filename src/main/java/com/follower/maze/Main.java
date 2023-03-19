@@ -28,20 +28,18 @@ public class Main {
     private static final int USER_SERVER_SOCKET_PORT = 9099;
     private static final int SERVER_TIMEOUT_IN_MS = 1000;
 
-    private static final Map<Integer, User> users = new MyUsersHashMap(new ConcurrentHashMap<Integer, User>(200));
+    private static final Map<Integer, User> users = new MyUsersHashMap(new ConcurrentHashMap<>(200));
     private static final AtomicBoolean shouldKeepAlive = new AtomicBoolean(true);
     private static final Thread mainThread = Thread.currentThread();
 
-    private static final Thread shutdownHookThread = new Thread() {
-        public void run() {
-            shouldKeepAlive.set(false);
-            try {
-                mainThread.join();
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
+    private static final Thread shutdownHookThread = new Thread(() -> {
+        shouldKeepAlive.set(false);
+        try {
+            mainThread.join();
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
-    };
+    });
 
     public static void main(String[] args) throws IOException {
         Runtime.getRuntime().addShutdownHook(shutdownHookThread);
