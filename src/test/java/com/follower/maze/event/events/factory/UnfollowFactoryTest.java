@@ -11,7 +11,6 @@ import static junit.framework.Assert.assertEquals;
 public class UnfollowFactoryTest {
     public static final String TYPE = "U";
     private final EventFactory factory = new UnfollowFactory();
-    private final DeadEvent expectedDeadEvent = DeadEvent.deadEvent();
 
     @Test
     public void testValidEvent() {
@@ -29,7 +28,7 @@ public class UnfollowFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 
@@ -39,7 +38,7 @@ public class UnfollowFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 
@@ -49,7 +48,7 @@ public class UnfollowFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 

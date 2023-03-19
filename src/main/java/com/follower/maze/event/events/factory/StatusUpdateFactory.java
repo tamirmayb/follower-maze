@@ -12,7 +12,7 @@ public class StatusUpdateFactory implements EventFactory {
         try {
             return new StatusUpdate(Integer.parseInt(values[0]), event, Integer.parseInt(values[2]));
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            return DeadEvent.deadEvent();
+            return DeadEvent.deadEvent(values);
         }
     }
 }

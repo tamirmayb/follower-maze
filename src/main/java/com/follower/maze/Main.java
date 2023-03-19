@@ -2,12 +2,8 @@ package com.follower.maze;
 
 import com.follower.maze.event.events.Event;
 import com.follower.maze.event.events.EventType;
-import com.follower.maze.event.events.factory.BroadcastFactory;
+import com.follower.maze.event.events.factory.*;
 import com.follower.maze.event.events.factory.interfaces.EventFactory;
-import com.follower.maze.event.events.factory.FollowFactory;
-import com.follower.maze.event.events.factory.PrivateMsgFactory;
-import com.follower.maze.event.events.factory.StatusUpdateFactory;
-import com.follower.maze.event.events.factory.UnfollowFactory;
 import com.follower.maze.event.processor.OutgoingEventProcessor;
 import com.follower.maze.event.processor.IncomingEventProcessor;
 import com.follower.maze.interfaces.MyAbstractServer;
@@ -56,6 +52,7 @@ public class Main {
             put(EventType.BROADCAST, new BroadcastFactory());
             put(EventType.PRIVATE_MSG, new PrivateMsgFactory());
             put(EventType.STATUS_UPDATE, new StatusUpdateFactory());
+            put(EventType.DEAD, new DeadEventFactory());
         }};
 
         final PriorityBlockingQueue<Event> readyToProcessEvents = new PriorityBlockingQueue<>();

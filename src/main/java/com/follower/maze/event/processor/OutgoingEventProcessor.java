@@ -1,5 +1,6 @@
 package com.follower.maze.event.processor;
 
+import com.follower.maze.event.events.DeadEvent;
 import com.follower.maze.interfaces.MyAbstractServer;
 import com.follower.maze.event.events.Event;
 
@@ -29,6 +30,10 @@ public class OutgoingEventProcessor extends MyAbstractServer {
     public void run() {
         while (shouldContinueRunning.get()) {
             final Event peek = events.peek();
+            if(peek instanceof DeadEvent) {
+                System.out.println("DEAD " + peek);
+            }
+            System.out.println(peek);
             if (peek != null && peek.getSeqId() <= currentSeqId) {
                 final Event take = events.poll();
                 if (dispatchEvents.add(take)) {

@@ -11,7 +11,7 @@ public class PrivateMsgFactory implements EventFactory {
         try {
             return new PrivateMsg(Integer.parseInt(values[0]), event, Integer.parseInt(values[2]), Integer.parseInt(values[3]));
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            return DeadEvent.deadEvent();
+            return DeadEvent.deadEvent(values);
         }
     }
 }

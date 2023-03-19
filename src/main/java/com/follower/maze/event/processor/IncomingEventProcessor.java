@@ -1,5 +1,6 @@
 package com.follower.maze.event.processor;
 
+import com.follower.maze.event.events.factory.DeadEventFactory;
 import com.follower.maze.interfaces.ClientProcessor;
 import com.follower.maze.event.events.Event;
 import com.follower.maze.event.events.EventType;
@@ -33,9 +34,11 @@ public class IncomingEventProcessor implements ClientProcessor {
         while ((line = in.readLine()) != null && shouldContinueRunning.get()) {
             final String[] splitLine = line.split("\\|");
             final String type = splitLine[1];
-            final EventFactory eventFactory = eventTypes.get(EventType.valueOfTypeCode(type));
+            final EventFactory eventFactory = eventTypes.getOrDefault(EventType.valueOfTypeCode(type), new DeadEventFactory());
             final Event event = eventFactory.createEvent(splitLine, line);
-            events.add(event);
+            if(!(eventFactory instanceof DeadEventFactory)) {
+                events.add(event);
+            }
         }
     }
 }

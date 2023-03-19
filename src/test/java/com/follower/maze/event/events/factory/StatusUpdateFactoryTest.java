@@ -12,7 +12,6 @@ public class StatusUpdateFactoryTest {
 
     public static final String TYPE = "S";
     private final EventFactory factory = new StatusUpdateFactory();
-    private final DeadEvent expectedDeadEvent = DeadEvent.deadEvent();
 
     @Test
     public void test() throws Exception {
@@ -30,7 +29,7 @@ public class StatusUpdateFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 
@@ -40,7 +39,7 @@ public class StatusUpdateFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 
@@ -50,7 +49,7 @@ public class StatusUpdateFactoryTest {
         String[] values = eventString.split("\\|");
 
         final Event event = factory.createEvent(values, eventString);
-
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         assertEquals(expectedDeadEvent, event);
     }
 }

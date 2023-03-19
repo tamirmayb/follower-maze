@@ -12,7 +12,8 @@ public class DeadEvent extends Event {
         super(0);
     }
 
-    public static DeadEvent deadEvent() {
+    public static DeadEvent deadEvent(String[] values) {
+        handleDeadEvent(values);
         return DEAD_EVENT;
     }
 
@@ -24,4 +25,9 @@ public class DeadEvent extends Event {
     public String toString() {
         return "DeadEvent{}";
     }
+
+    private static void handleDeadEvent(String[] values) {
+        // todo add code which handles dead event data
+    }
+
 }

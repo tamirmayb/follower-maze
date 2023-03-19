@@ -11,7 +11,6 @@ import static junit.framework.Assert.assertEquals;
 public class PrivateMsgFactoryTest {
     public static final String TYPE = "P";
     private final EventFactory factory = new PrivateMsgFactory();
-    private final DeadEvent expectedDeadEvent = DeadEvent.deadEvent();
 
     @Test
     public void test() throws Exception {
@@ -28,6 +27,7 @@ public class PrivateMsgFactoryTest {
         final String eventString = "test|" + TYPE + "|34|56";
         String[] values = eventString.split("\\|");
 
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         final Event event = factory.createEvent(values, eventString);
 
         assertEquals(expectedDeadEvent, event);
@@ -38,6 +38,7 @@ public class PrivateMsgFactoryTest {
         final String eventString = "123|" + TYPE + "|test|50";
         String[] values = eventString.split("\\|");
 
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         final Event event = factory.createEvent(values, eventString);
 
         assertEquals(expectedDeadEvent, event);
@@ -48,6 +49,7 @@ public class PrivateMsgFactoryTest {
         final String eventString = "123|" + TYPE;
         String[] values = eventString.split("\\|");
 
+        final DeadEvent expectedDeadEvent = DeadEvent.deadEvent(values);
         final Event event = factory.createEvent(values, eventString);
 
         assertEquals(expectedDeadEvent, event);

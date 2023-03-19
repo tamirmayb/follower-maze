@@ -5,7 +5,9 @@ public enum EventType {
     UNFOLLOW ("U"),
     BROADCAST ("B"),
     PRIVATE_MSG ("P"),
-    STATUS_UPDATE ("S");
+    STATUS_UPDATE ("S"),
+    DEAD ("D");
+
 
     public final String typeCode;
 
